@@ -1,0 +1,16 @@
+RewriteEngine on
+#Включаем модуль mod_rewrite для монипуляции адресами измениение URL
+
+#RewriteCond - условие при котором должно срабатывать правило RewriteRule
+RewriteCond %{REQUEST_FILENAME} !-f
+ #запрос не равен файл
+RewriteCond %{REQUEST_FILENAME} !-d
+ #запрос не равен директория или католог
+
+ # правила запроса директории
+ #RewriteRule <regexp- регулярное выражение(^(.*)$)><path- путь(index.php?param=$1)>[flags -флаг[QSA,L]]
+ RewriteRule (.*) index.php?$1 [QSA,L]
+ # ( [param] => sd/jgh) выведет путь
+ # L - прекратить дальнейшее применение
+ # QSA - передать как часть строки запроса
+ # NC - задаёт чувствительность к регистру для линукса обязательно
